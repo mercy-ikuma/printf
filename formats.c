@@ -59,18 +59,41 @@ int set_mult(int lenght)
  */
 int print_int(va_list list)
 {
-	unsigned int m;
+	int number = va_arg(list, int);
+	int lenght = 0, i, stop = 0, copy = 0, unit = 0;
+	int thounsand = 0, muliple = 0, sing = 1;
 
-	if (n < 0)
+	copy = number;
+
+	if (copy < 0)
 	{
-		_putchar('-');
-		m = -n;
+		putchar('-');
+		sing = -1;
 	}
-	else
-		m = n;
-	if (m / 10)
+
+	for (i = 0; stop != 1; i++)
 	{
-		id_print(m / 10);
+		copy = copy / 10;
+		if ((copy * sing) < 10)
+			stop = 1;
 	}
-	_putchar(m % 10 + '0');
+
+	lenght = i;
+	thounsand = lenght;
+
+	for (i = 0; i < thounsand; i++)
+	{
+		muliple = set_mult(lenght);
+		unit = number / muliple;
+		number = number - (muliple * unit);
+		printf("%d", unit * sing);
+		if (i == (thounsand - 1))
+		{
+			unit = number % 10;
+			printf("%d", unit * sing);
+		}
+		lenght--;
+	}
+
+	return (thounsand + 1);
 }
