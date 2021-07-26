@@ -29,6 +29,8 @@ typedef struct fmt
 int _putchar(char c);
 int _putstring(char *c, int size);
 int _strlen(char *s);
+int print_binary(char *format_spec, va_list ap)
+
 
 /* This functions allows to select the function to format the input.*/
 /* Your return is a function pointer */
