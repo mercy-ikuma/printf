@@ -1,37 +1,49 @@
 #ifndef HOLBERTON_H
 #define HOLBERTON_H
 
-#include <stdarg.h> /* va_list */
-#include <stdlib.h> /* malloc, free */
-#include <unistd.h> /* write */
+/* Include libraries */
+#include <stdarg.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
 
-/* helper functions */
-char* (*get_func(char i))(va_list);
-char *create_buffer(void);
-void write_buffer(char *buffer, int len, va_list list);
-char *_strcpy(char *dest, char *src);
+/* Define Macros*/
+#define SIZE 1024
+
+/* Define structs */
+/**
+ * struct fmt - Structs to define format of printf
+ *
+ * @type: Type of specifier format to prints
+ * @func_fmt: The function associed
+ */
+typedef struct fmt
+{
+	char *type;
+	int (*func_fmt)();
+} identifier_fmt;
+
+/* Define prototypes */
+/* Functions of generic use.*/
+int _putchar(char c);
+int _putstring(char *c, int size);
 int _strlen(char *s);
 
-/* printf functions */
+/* This functions allows to select the function to format the input.*/
+/* Your return is a function pointer */
+int (*select_fun_fmt(const char type))();
+/* This function clean the buffer before set with new data*/
+void free_buffer(char *buffer);
+
+/* This function implement a printf function of C*/
 int _printf(const char *format, ...);
-char *print_s(va_list list);
-char *print_c(va_list list);
-char *print_d(va_list list);
-char *itob(va_list list);
-char *rot13(va_list list);
-char *rev_string(va_list list);
-char *itoOctal(va_list list);
 
-/**
- * struct types - struct
- * @id: identifier of type to print (e.g. c means char)
- * @func: ptr to functions that print according to identifier (e.g. print_c)
- */
-
-typedef struct types
-{
-	char id;
-	char* (*func)(va_list);
-} print;
-
+/*Function  */
+int print_char(va_list list);
+int print_string(va_list list);
+int print_percent(va_list list);
+int print_int(va_list list);
+int print_decimal(va_list list);
+int print_double(va_list list);
 #endif
