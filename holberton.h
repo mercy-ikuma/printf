@@ -42,6 +42,7 @@ void free_buffer(char *buffer);
 int _printf(const char *format, ...);
 
 char *print_binary(modifier_t *modif, va_list ap)
+char *print_rev(modifier_t *modif, va_list ap)
 	
 /*Function  */
 int print_char(va_list list);
