@@ -39,6 +39,8 @@ void free_buffer(char *buffer);
 /* This function implement a printf function of C*/
 int _printf(const char *format, ...);
 
+char *print_binary(modifier_t *modif, va_list ap)
+	
 /*Function  */
 int print_char(va_list list);
 int print_string(va_list list);
