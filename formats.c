@@ -53,7 +53,7 @@ int set_mult(int lenght)
 }
 
 /**
- * print_int - Prints strings
+ * print_int - Prints integers
  * @list: list of arguments
  * Return: Will return leght of string stored.
  */
