@@ -1,40 +1,40 @@
 #include "holberton.h"
-#include <stdio.h>
-#include <stdlib.h>
+
 /**
- * format_b - function to convert to unsigned integer to binary
- * @valist: taking in arguments
- * @buffer: values stored
- * @index: tracks the index position
+ * print_binary - print unsigned int as a binary
+ * @modif: struct containing modifier fields
+ * @ap: va_list pointer containing unsigned int to convert and print
+ *
+ * Return: number of printed charachters
  */
-void format_b(va_list valist, char *buffer, int *index)
+
+char *print_binary(modifier_t *modif, va_list ap)
 {
 	unsigned int n;
-	int i;
-	char *binaryvalues;
-	char *binary;
+	int i = 0, j = 0;
+	char binary[35], *res_str;
 
-	n = va_arg(valist, int);
-	binaryvalues = "01";
-	binary = malloc(33 * sizeof(char));
-	if (binary == NULL)
-		return;
+	if (!ap || !modif || modif->specifier != 'b')
+		return (0);
+	n = va_arg(ap, unsigned int);
 	if (n == 0)
 	{
-		buffer[*index] = '0';
-		*index += 1;
+		j = 1;
+		res_str = malloc(sizeof(char) * 2);
+		res_str[0] = '0';
 	}
 	else
 	{
-		for (i = 0; n != 0; i++)
+		while (n)
 		{
-			binary[i] = binaryvalues[n % 2];
-			n /= 2;
+			binary[i++] = '0' + (n % 2);
+			n = n / 2;
 		}
-		for (i--; i >= 0; *index += 1, i--)
-		{
-			buffer[*index] = binary[i];
-		}
+		res_str = malloc(sizeof(char) * i);
+		i--;
+		while (i >= 0)
+			res_str[j++] = binary[i--];
 	}
-	free(binary);
+	res_str[j] = '\0';
+	return (res_str);
 }
