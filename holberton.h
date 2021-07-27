@@ -29,8 +29,6 @@ typedef struct fmt
 int _putchar(char c);
 int _putstring(char *c, int size);
 int _strlen(char *s);
-int print_binary(char *format_spec, va_list ap);
-
 
 /* This functions allows to select the function to format the input.*/
 /* Your return is a function pointer */
@@ -41,9 +39,6 @@ void free_buffer(char *buffer);
 /* This function implement a printf function of C*/
 int _printf(const char *format, ...);
 
-char *print_binary(modifier_t *modif, va_list ap);
-char *print_rev(modifier_t *modif, va_list ap);
-	
 /*Function  */
 int print_char(va_list list);
 int print_string(va_list list);
